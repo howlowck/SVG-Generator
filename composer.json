@@ -1,0 +1,20 @@
+{
+    "name": "howlowck/svg-gen",
+    "description": "It's a easy to use SVG generator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hao Luo",
+            "email": "howlowck@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    },
+    "autoload": {
+        "psr-0" : {
+            "Howlowck\\SVGGen": "src/"
+        }
+    }
+}

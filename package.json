@@ -1,0 +1,10 @@
+{
+  "name": "SVGGenerator",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-regarde": "~0.1.1",
+    "grunt-exec": "*"
+  },
+  "readmeFilename": "readme.md"
+}
