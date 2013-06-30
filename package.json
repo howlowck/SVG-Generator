@@ -4,7 +4,8 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-regarde": "~0.1.1",
-    "grunt-exec": "*"
+    "grunt-exec": "*",
+    "grunt-text-replace": "*"
   },
   "readmeFilename": "readme.md"
 }
