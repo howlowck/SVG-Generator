@@ -5,30 +5,32 @@ class Circle extends Shape {
     protected $cx;
     protected $cy;
     protected $r;
+    public $propertyArray = array(
+        'cx' => 0,
+        'cy' => 0,
+        'r' => 0
+    );
+    function __constructor($cx = 0, $cy = 0, $r = 0) {
+        $this->cx = $cx;
+        $this->cy = $cy;
+        $this->r = $r;
+    }
     public function setCX($x) 
     {
         $this->cx = $x;
-        $this->updatePropertyArray();
+        $this->propertyArray = array_merge($this->propertyArray, array('cx' => $this->cx));
         return $this;
     }
     public function setCY($y) 
     {
         $this->cy = $y;
-        $this->updatePropertyArray();
+        $this->propertyArray = array_merge($this->propertyArray, array('cy' => $this->cy));
         return $this;
     }
     public function setR($r)
     {
         $this->r = $r;
-        $this->updatePropertyArray();
+        $this->propertyArray = array_merge($this->propertyArray, array('r' => $this->r));
         return $this;
-    }
-    public function updatePropertyArray() {
-        $this->propertyArray = array(
-            "cx" => $this->cx,
-            "cy" => $this->cy,
-            "r" => $this->r,
-        );
-        return $this->propertyArray;
     }
 }
