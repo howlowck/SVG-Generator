@@ -2,7 +2,7 @@
     "name": "howlowck/svg-gen",
     "description": "A SVG generator",
     "keywords": ["generator", "svg", "html5"],
-    "version": "0.0.1",
+    "version": "0.0.1-dev",
     "type": "library",
     "license": "MIT",
     "authors": [

@@ -27,6 +27,10 @@ class SVGTest extends PHPUnit_Framework_Testcase {
         ));
         $this->assertEquals('<svg width="300" height="400" />', $this->svg->getElementString());
     }
+    public function testSVGElementWithSetAnythingMethodWithMagic(){
+        $this->svg->setSomething('340');
+        $this->assertEquals('<svg something="340" />', $this->svg->getElementString());
+    }
     public function testSVGElementStringWithCircleInside()
     {
         $circleOutput = '<circle cx="3" cy="5" r="20" />';

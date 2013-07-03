@@ -2,7 +2,8 @@
 use Howlowck\SVGGen\Element;
 
 abstract class Descriptive extends Element {
-    public function getType() {
+    public function getType()
+    {
         return 'descriptive';
     }    
 }

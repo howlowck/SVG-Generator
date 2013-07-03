@@ -21,9 +21,17 @@ module.exports = function (grunt) {
                 src: ['package.json', 'composer.json'],
                 overwrite: true,
                 replacements: [{
-                    from: '0.0.0',
-                    to: "0.0.1"
+                    from: '0.0.1',
+                    to: "0.0.1-dev"
                 }]
+            }
+        },
+        phpcs: {
+            options: {
+                standard: 'PSR1'
+            },
+            src: {
+                dir: 'src'
             }
         }
     });
@@ -31,5 +39,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-regarde');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-text-replace');
+    grunt.loadNpmTasks('grunt-phpcs');
     grunt.registerTask('test', ['regarde:phpunit']);
 };

@@ -10,7 +10,8 @@ class Circle extends Shape {
         'cy' => 0,
         'r' => 0
     );
-    function __constructor($cx = 0, $cy = 0, $r = 0) {
+    public function __construct($cx = 0, $cy = 0, $r = 0)
+    {
         $this->cx = $cx;
         $this->cy = $cy;
         $this->r = $r;
