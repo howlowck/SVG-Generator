@@ -3,17 +3,18 @@
 class Element {
     protected $tagName;
     protected $hasContent = false;
-    public $propertyArray = array();
     public $attributeArray = array();
     protected $contentArray = array();
+    public function __construct(Array $attributeArray = array())
+    {
+        $this->attributeArray = $attributeArray;
+    }
     public function setTagName($tagName)
     {
         $this->tagName = $tagName;
     }
     public function getStartTag() 
     {
-        $this->addPropertyToAttribute();
-        
         $string = '<' . $this->tagName;
         if ( ! empty($this->attributeArray))
         {
@@ -58,23 +59,10 @@ class Element {
         // $this->addPropertyToAttribute();
         return $this;
     }
-    public function addAttributes($attributeArray)
+    public function updateAttributes($attributeArray)
     {
         $this->attributeArray = array_merge($this->attributeArray, $attributeArray);
         return $this;
-    }
-    // public function addAttribute($attributeName, $attributeValue)
-    // {
-    //     $this->addAttributes(array($attributeName => $attributeValue));
-    //     return $this;
-    // } 
-    protected function addPropertyToAttribute()
-    {
-        $this->attributeArray = $this->propertyArray + $this->attributeArray;
-    }
-    protected function updatePropertyToAttribute()
-    {
-        $this->attributeArray = array_merge($this->attributeArray, $this->propertyArray);
     }
     public function add($content)
     {
@@ -99,7 +87,7 @@ class Element {
     {
         if (substr($method, 0, 3) == 'set' and strlen($method) > 3) {
             $attrName = $this->slugify(substr($method, 3));
-            $this->addAttributes(array($attrName => $arg[0]));
+            $this->updateAttributes(array($attrName => $arg[0]));
             return $this;
         }
     }

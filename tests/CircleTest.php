@@ -29,13 +29,21 @@ Class CircleTest extends PHPUnit_Framework_TestCase {
      * @dataProvider properties
      */
     public function testSetProperties($cx, $cy, $r) {
-        $this->circle->setCX($cx);
-        $this->circle->setCY($cy);
+        $this->circle->setCx($cx);
+        $this->circle->setCy($cy);
         $this->circle->setR($r);
-        $propertyArray = $this->circle->getPropertyArray();
-        $this->assertEquals($cx, $propertyArray["cx"]);
-        $this->assertEquals($cy, $propertyArray["cy"]);
-        $this->assertEquals($r, $propertyArray["r"]);
+        $attributeArray = $this->circle->attributeArray;
+        $this->assertEquals($cx, $attributeArray["cx"]);
+        $this->assertEquals($cy, $attributeArray["cy"]);
+        $this->assertEquals($r, $attributeArray["r"]);
+    }
+    public function testInitializeWithProperties() {
+        $cx = 4;
+        $cy = 5;
+        $circle2 = new Circle(array('cx'=> $cx, 'cy' => $cy));
+        $attributeArray = $circle2->attributeArray;
+        $this->assertEquals($cx, $attributeArray["cx"]);
+        $this->assertEquals($cy, $attributeArray["cy"]);
     }
     public function testEndTagName() {
         $this->assertEquals(' />', $this->circle->getEndTag());
@@ -55,7 +63,7 @@ Class CircleTest extends PHPUnit_Framework_TestCase {
         $this->assertArrayHasKey('stroke', $this->circle->attributeArray);
     }
     public function testElementStringWithoutContent() {
-        $this->assertEquals('<circle cx="0" cy="0" r="0" />', $this->circle->getElementString());
+        $this->assertEquals('<circle />', $this->circle->getElementString());
         $this->circle->setCX(3)->setCY(3)->setR(5);
         $this->assertEquals('<circle cx="3" cy="3" r="5" />', $this->circle->getElementString());
         $this->circle->setFill('red');
@@ -67,7 +75,7 @@ Class CircleTest extends PHPUnit_Framework_TestCase {
         $title = m::mock('Howlowck\SVGGen\Descriptive\Title');
         $title->shouldReceive('getElementString')->times(1)->andReturn('<title>awesome!</title>');
         $this->circle->add($title);
-        $this->assertEquals('<circle cx="0" cy="0" r="0" ><title>awesome!</title></circle>', $this->circle->getElementString());
+        $this->assertEquals('<circle><title>awesome!</title></circle>', $this->circle->getElementString());
     }
     public function testTranformArrayOnRotateOrTranslate() {
         $this->circle->rotate(30);
@@ -81,6 +89,6 @@ Class CircleTest extends PHPUnit_Framework_TestCase {
     }
     public function testElementStringWithTransform() {
         $this->circle->rotate('30');
-        $this->assertEquals('<circle cx="0" cy="0" r="0" transform="rotate(30)" />', $this->circle->getElementString());
+        $this->assertEquals('<circle transform="rotate(30)" />', $this->circle->getElementString());
     }
 }

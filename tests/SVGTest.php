@@ -21,10 +21,7 @@ class SVGTest extends PHPUnit_Framework_Testcase {
     }
     public function testSVGElementWithAttributes()
     {
-        $this->svg->addAttributes(array(
-            "width" => 300,
-            "height" => 400
-        ));
+        $this->svg->setWidth(300)->setHeight(400);
         $this->assertEquals('<svg width="300" height="400" />', $this->svg->getElementString());
     }
     public function testSVGElementWithSetAnythingMethodWithMagic(){
@@ -38,10 +35,7 @@ class SVGTest extends PHPUnit_Framework_Testcase {
         $circle->shouldReceive('getElementString')->times(2)->andReturn($circleOutput);
         $this->svg->add($circle);
         $this->assertEquals("<svg>$circleOutput</svg>", $this->svg->getElementString());
-        $this->svg->addAttributes(array(
-            "width" => 500,
-            "height" => 600
-        ));
+        $this->svg->setWidth(500)->setHeight(600);
         $this->assertEquals("<svg width=\"500\" height=\"600\" >$circleOutput</svg>", $this->svg->getElementString());
     }
 }
